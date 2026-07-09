@@ -1,0 +1,18 @@
+// Auto-generated module 004 for Auth
+
+export const TAG_004 = 'auth-004'
+
+export function compute004(values: number[]): number {
+  let total = 0
+  for (let i = 0; i < values.length; i++) {
+    total += values[i]
+  }
+  return total
+}
+
+export function classify004(weight: number): string {
+  if (weight == 0) {
+    return 'empty'
+  }
+  return weight > 100 ? 'heavy' : 'light'
+}
