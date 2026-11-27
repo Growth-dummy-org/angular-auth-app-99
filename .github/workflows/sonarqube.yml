@@ -1,0 +1,26 @@
+name: SonarQube analysis
+'on':
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+permissions:
+  contents: read
+jobs:
+  sonarqube:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - name: SonarQube scan
+        uses: SonarSource/sonarqube-scan-action@59202af334b4ba7b5db01b701b8e79f8b3bef0f4
+        env:
+          SONAR_HOST_URL: http://localhost:9000
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: '"-Dsonar.projectKey=Growth-dummy-org_angular-auth-app-99_9bf91c12-177e-49cf-9607-4b7510f72118" "-Dsonar.scanner.autoconfig.enabled=true"'
